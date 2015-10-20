@@ -14,9 +14,12 @@
   <% end %>
   </br>
   <% if @show_dealer_button == true %>
-    <form action="/game/dealer/hit" method='post'>
-      <input type="submit" class="btn btn-primary" value="Click to see dealer's next card"/>
-    </form>
+    <p>
+      <h5>Dealer has <%= calculate_total(session[:dealer_cards])%> and will hit.</h5>
+      <form action="/game/dealer/hit" method='post'>
+        <input type="submit" class="btn btn-primary" value="Click to see dealer's next card"/>
+      </form>
+    </p>
   <% end %>
 </div>
 
@@ -31,21 +34,19 @@
     <h5><%= session[:player_name] %> has chosen to stay at <%= calculate_total(session[:player_cards]) %>
     </h5>
   <% end %>
-
 </div>
 
-<p>
-  <% if @player_stay == false %>
-    What would <%= session[:player_name] %> like to do?
-    <%= session[:player_name] %> has <%= calculate_total(session[:player_cards]) %>
-  <% end %>
 
 <% if @show_hit_or_stay_buttons %>
-  <form id="hit_form" action="/game/player/hit" method='post'>
-    <input type="submit" class="btn btn-success" value="Hit" />
-  </form>
-  <form id="stay_form" action="/game/dealer/turn" method='get'>
-    <input type="submit" class="btn btn-warning" value="Stay" />
-  </form>
+  <p>
+    <h5>What would <%= session[:player_name] %> like to do?
+      <%= session[:player_name] %> has <%= calculate_total(session[:player_cards]) %>
+    </h5>
+    <form id="hit_form" action="/game/player/hit" method='post'>
+      <input type="submit" class="btn btn-success" value="Hit" />
+    </form>
+    <form id="stay_form" action="/game/dealer/turn" method='get'>
+      <input type="submit" class="btn btn-warning" value="Stay" />
+    </form>
+  </p>
 <% end %>
-</p>

@@ -67,10 +67,20 @@ get '/new_player' do
 end
 
 post '/new_player' do
-  if params[:player_name].empty?
-    @error = "Name is required"
+  player_name = params[:player_name]
+
+  player_name.each_char do |char| 
+    if /[a-zA-Z0-9]/.match(char) == false
+      @error = "Name contains illegal characters. Please enter valid name."
+      halt erb(:new_player)
+    end
+  end  
+
+  if player_name.empty?
+    @error = "Name cannot be empty. Please enter valid name."
     halt erb(:new_player)
   end
+
   session[:player_name] = params[:player_name]
   redirect '/game'
 end
