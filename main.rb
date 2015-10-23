@@ -115,7 +115,7 @@ post '/game/player/hit' do
     @show_hit_or_stay_buttons = false
   end
 
-  erb :game
+  erb :game, layout:false
 end
 
 
