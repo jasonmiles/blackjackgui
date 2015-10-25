@@ -99,7 +99,7 @@ post '/new_player' do
 end
 
 get '/bet' do
-  session[:player_bet] = nil
+  session[:player_bet] = 0
   erb :bet
 end
 
