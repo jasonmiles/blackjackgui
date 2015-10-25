@@ -95,7 +95,6 @@ post '/new_player' do
   end
 
   session[:player_name] = params[:player_name]
-  session[:player_pot] = INITIAL_POT_AMOUNT
   redirect '/bet'
 end
 
